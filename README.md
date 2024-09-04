@@ -8,4 +8,4 @@ Slides: https://docs.google.com/presentation/d/1zdb7fxvypluFdvB70kIAXeBHBqyz6P18
 
 
 
-Theme example: https://github.com/jeromelachaud/freelancer-theme
+Theme example: https://github.com/StartBootstrap/startbootstrap-resume

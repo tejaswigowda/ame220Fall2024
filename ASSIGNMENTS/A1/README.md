@@ -1,10 +1,10 @@
 # Assignment 1
 
-## Due September 10th before midnight. 
+## Due September 11th before midnight. 
 
 ## Task
 
-Create a private github repository called `AME220Fall2021` and add me
+Create a private github repository called `AME220Fall2024` and add me
 (`tejaswigowda`) as
 a collaborator. The repository should contain a `README.md` that has the
 following information:

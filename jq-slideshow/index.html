@@ -1,13 +1,45 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Slideshow</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script>
+        var images = ["https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Black-throated_green_warbler_in_PP_%2814050%29.jpg/415px-Black-throated_green_warbler_in_PP_%2814050%29.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Cinnamon_Quail-thrush_0A2A9195.jpg/500px-Cinnamon_Quail-thrush_0A2A9195.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Common_noddy_%28Anous_stolidus_pileatus%29_in_flight_Michaelmas_Cay.jpg/450px-Common_noddy_%28Anous_stolidus_pileatus%29_in_flight_Michaelmas_Cay.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Galah_%28Eolophus_roseicapilla%29_female_in_flight_Mount_Pleasant.jpg/450px-Galah_%28Eolophus_roseicapilla%29_female_in_flight_Mount_Pleasant.jpg"
+        ];
+        var index = 0;
+        function start(){
+            $("img#slideshow").attr("src", images[index]);
+        }
+
+        function prev(){
+            if(index > 0){
+                index = index - 1;
+                start();
+            }
+            else{
+                index = images.length - 1;
+                start();
+            }
+        }
+        function next(){
+            if(index < images.length - 1){
+                index = index + 1;
+                start();
+            }
+            else{
+                index = 0;
+                start();
+            }
+        }
+    </script>
 </head>
 
-<body>
-</body>
+<body onload="start()">
     <img id="slideshow" height="400" width="auto">
-    <button id="prev">Previous</button>
-    <button id="next">Next</button>
+    <button id="prev" onclick="prev()">Previous</button>
+    <button id="next" onclick="next()">Next</button>
+</body>
 </html>

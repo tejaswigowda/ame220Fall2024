@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Slideshow</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script>
+        var images = []
+        var index = 0;
+        function start(){
+            images = window.location.hash.replace("#", "").split(",");
+            $("img#slideshow").attr("src", images[index]);
+        }
+
+        function prev(){
+            if(index > 0){
+                index = index - 1;
+                start();
+            }
+            else{
+                index = images.length - 1;
+                start();
+            }
+        }
+        function next(){
+            if(index < images.length - 1){
+                index = index + 1;
+                start();
+            }
+            else{
+                index = 0;
+                start();
+            }
+        }
+    </script>
+</head>
+
+<body onload="start()">
+    <img id="slideshow" height="400" width="auto">
+    <button id="prev" onclick="prev()">Previous</button>
+    <button id="next" onclick="next()">Next</button>
+</body>
+</html>

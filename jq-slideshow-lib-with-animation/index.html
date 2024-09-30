@@ -8,7 +8,13 @@
         var index = 0;
         function start(){
             images = window.location.hash.replace("#", "").split(",");
-            $("img#slideshow").attr("src", images[index]);
+            var markup = "";
+            for(var i = 0; i < images.length; i++){
+               markup += "<div class='slide' style='background-image: url(\"" + images[i] + "\")'></div>";
+            }
+            console.log(markup);
+            $("#slideshow").html(markup);
+            //document.getElementById("slideshow").innerHTML = markup;
         }
 
         function prev(){
@@ -35,8 +41,31 @@
 </head>
 
 <body onload="start()">
-    <img id="slideshow" height="400" width="auto">
+    <div id="slideshow">
+
+    </div>
     <button id="prev" onclick="prev()">Previous</button>
     <button id="next" onclick="next()">Next</button>
 </body>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    #slideshow{
+        width: 100vw;
+        height: 100vh;
+    }
+    #slideshow .slide{
+        width: 100%;
+        height: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: absolute;
+        top:0;
+        left:0;
+    }
+</style>
 </html>

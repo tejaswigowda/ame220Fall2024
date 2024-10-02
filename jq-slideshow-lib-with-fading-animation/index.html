@@ -12,20 +12,26 @@
         function start(){
             images = window.location.hash.replace("#", "").split(",");
             var markup = "";
+            var markup1 = "";
             for(var i = 0; i < images.length; i++){
                markup += "<div class='slide' style='background-image: url(\"" + images[i] + "\")'></div>";
+               markup1 += "<button onclick='goTo(" + i + ")'>" + (i + 1) + "</button>";
             }
-            console.log(markup);
             $("#slideshow").html(markup);
+            $("#numbers").html(markup1);
             //document.getElementById("slideshow").innerHTML = markup;
             goTo(index);
         }
 
-        function goTo(index){
+        function goTo(i){
+            index = i;
             $(".slide").stop().animate({opacity: 0}, 1000);
             //$(".slide").eq(index).animate({opacity: 1}, 1000);
            // $(".slide:nth-of-type(" + (index + 1) + ")").animate({opacity: 1}, 1000);
            $(".slide:nth-of-type(" + (index + 1) + ")").stop().animate({opacity: 1}, 1000);
+
+              $("#numbers button").removeClass("current");
+                $("#numbers button").eq(index).addClass("current");
             
         }
         function prev(){
@@ -50,9 +56,8 @@
 </head>
 
 <body onload="start()">
-    <div id="slideshow">
-
-    </div>
+    <div id="slideshow"></div>
+    <div id="numbers"></div>
 
     <button onclick='prev()' id='prev' class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">arrow_back</i></button>
     <button onclick='next()' id="next" class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">arrow_forward</i></button>
@@ -90,5 +95,26 @@
         bottom: 50%;
         right: 10px;
     }   
+    #numbers{
+        position: fixed;
+        bottom: 10px;
+        width: 100%;
+        height: 50px;
+        text-align: center;
+    }
+    #numbers button{
+        width: 50px;
+        height: 50px;
+        background-color: black;
+        color: white;
+        border: none;
+        margin: 0 5px;
+        font-size: 20px;
+        border-radius: 50%;
+    }
+    #numbers button.current{
+        background-color: gold;
+        color:black;
+    }
 </style>
 </html>

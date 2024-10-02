@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Slideshow</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">            
+    <script>
+        var images = []
+        var index = 0;
+        function start(){
+            images = window.location.hash.replace("#", "").split(",");
+            var markup = "";
+            var markup1 = "";
+            for(var i = 0; i < images.length; i++){
+               markup += "<div class='slide' style='background-image: url(\"" + images[i] + "\")'></div>";
+               markup1 += "<button onclick='goTo(" + i + ")'>" + (i + 1) + "</button>";
+            }
+            $("#slideshow").html(markup);
+            $("#numbers").html(markup1);
+            //document.getElementById("slideshow").innerHTML = markup;
+            goTo(index);
+        }
+
+        function goTo(i){
+            index = i;
+            $(".slide").stop().animate({opacity: 0}, 1000);
+            //$(".slide").eq(index).animate({opacity: 1}, 1000);
+           // $(".slide:nth-of-type(" + (index + 1) + ")").animate({opacity: 1}, 1000);
+           $(".slide:nth-of-type(" + (index + 1) + ")").stop().animate({opacity: 1}, 1000);
+
+              $("#numbers button").removeClass("current");
+                $("#numbers button").eq(index).addClass("current");
+            
+        }
+        function prev(){
+            if(index > 0){
+                index = index - 1;
+            }
+            else{
+                index = images.length - 1;
+            }
+            goTo(index);
+        }
+        function next(){
+            if(index < images.length - 1){
+                index = index + 1;
+            }
+            else{
+                index = 0;
+            }
+            goTo(index);
+        }
+    </script>
+</head>
+
+<body onload="start()">
+    <div id="slideshow"></div>
+    <div id="numbers"></div>
+
+    <button onclick='prev()' id='prev' class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">arrow_back</i></button>
+    <button onclick='next()' id="next" class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">arrow_forward</i></button>
+
+</body>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: black;
+    }
+    #slideshow{
+        width: 100vw;
+        height: 100vh;
+    }
+    #slideshow .slide{
+        width: 100%;
+        height: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: absolute;
+        top:0;
+        left:0;
+    }
+
+    #prev{
+        position: fixed;
+        bottom: 50%;
+        left: 10px;
+    }
+    #next{
+        position: fixed;
+        bottom: 50%;
+        right: 10px;
+    }   
+    #numbers{
+        position: fixed;
+        bottom: 10px;
+        width: 100%;
+        height: 50px;
+        text-align: center;
+    }
+    #numbers button{
+        width: 50px;
+        height: 50px;
+        background-color: black;
+        color: white;
+        border: none;
+        margin: 0 5px;
+        font-size: 20px;
+        border-radius: 50%;
+    }
+    #numbers button.current{
+        background-color: gold;
+        color:black;
+    }
+</style>
+</html>

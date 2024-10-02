@@ -9,8 +9,11 @@
     <script>
         var images = []
         var index = 0;
+        var animation = "fading";
         function start(){
             images = window.location.hash.replace("#", "").split(",");
+            animation = images.pop();
+            $("body").addClass(animation);
             var markup = "";
             var markup1 = "";
             for(var i = 0; i < images.length; i++){

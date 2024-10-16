@@ -85,7 +85,7 @@
         background: black;
         position: absolute;
         left: 50%;
-        transform-origin: 0 150px;
+        transform-origin: 0 0px;
         top: 50%;
     }
     #hours{
@@ -109,6 +109,7 @@
         var minutes = now.getMinutes();
         var seconds = now.getSeconds();
         console.log(hours, minutes, seconds);
+        document.getElementById('seconds').style.transform = "rotate(" + ((seconds-15) * 6) + "deg)";
     }
 
     setTime();

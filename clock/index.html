@@ -110,11 +110,12 @@
         var seconds = now.getSeconds();
         console.log(hours, minutes, seconds);
         document.getElementById('seconds').style.transform = "rotate(" + ((seconds-15) * 6) + "deg)";
+        document.getElementById('minutes').style.transform = "rotate(" + ((minutes-15) * 6) + "deg)";
+        document.getElementById('hours').style.transform = "rotate(" + ((hours-3) * 30 + (minutes*.5)) + "deg)";
     }
 
     setTime();
     setInterval(setTime, 1000);
-
 </script>
 
 </html>

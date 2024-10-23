@@ -37,6 +37,7 @@
         transform: translate(-50%, -50%);
         top: 50%;
         left: 50%;
+        background:white;
     }
     .tick{
         width:4px;
@@ -105,7 +106,7 @@
     var offset = parseFloat(window.location.hash.replace('#', '')) || 0;
     function setTime()
     {
-        var now = new Date();
+        var now = new Date(new Date().getTime() + offset*60*60*1000);
         var hours = now.getUTCHours();
         var minutes = now.getUTCMinutes();
         var seconds = now.getUTCSeconds();
@@ -113,6 +114,12 @@
         document.getElementById('seconds').style.transform = "rotate(" + ((seconds-15) * 6) + "deg)";
         document.getElementById('minutes').style.transform = "rotate(" + ((minutes-15) * 6) + "deg)";
         document.getElementById('hours').style.transform = "rotate(" + ((hours-3) * 30 + (minutes*.5)) + "deg)";
+        if(hours > 6 && hours < 18){
+           document.getElementById('clock').style.filter = "invert(0)";
+        }
+        else{
+            document.getElementById('clock').style.filter = "invert(1)";
+        }
     }
 
     setTime();

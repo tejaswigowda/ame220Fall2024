@@ -16,6 +16,9 @@
             modal = M.Modal.init(elems, {
                 onOpenEnd: function () {
                     $(".select-dropdown.dropdown-trigger").click();
+                },
+                onCloseStart: function(){
+                    makeClocks();
                 }
             })[0];
             elems = document.querySelectorAll('select');
@@ -23,6 +26,13 @@
         }
         function openModal() {
             modal.open();
+        }
+        var tzTexts;
+        var theTZs;
+        function makeClocks(){
+            theTZs = tzSelect.getSelectedValues(); 
+            tzTexts = $('#timezones option:selected').toArray().map(item => item.text).join().split(",");
+
         }
     </script>
 </head>

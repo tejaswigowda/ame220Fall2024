@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Clock International</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div id="clock">
+        <div class="tick" id="tick1"></div>
+        <div class="tick" id="tick2"></div>
+        <div class="tick" id="tick3"></div>
+        <div class="tick" id="tick4"></div>
+        <div class="tick" id="tick5"></div>
+        <div class="tick" id="tick6"></div>
+        <div class="tick" id="tick7"></div>
+        <div class="tick" id="tick8"></div>
+        <div class="tick" id="tick9"></div>
+        <div class="tick" id="tick10"></div>
+        <div class="tick" id="tick11"></div>
+        <div class="tick" id="tick12"></div>
+
+        <div class='hand' id="hours"></div>
+        <div class='hand' id="minutes"></div>
+        <div class='hand' id="seconds"></div>
+    </div>
+</body>
+<style>
+    #clock {
+        width: 300px;
+        height: 300px;
+        border: 2px solid;
+        border-radius: 50%;
+        /* transform: translate(calc(50vw - 150px), calc(50vh - 150px)); */
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        background:white;
+    }
+    .tick{
+        width:4px;
+        height: 15px;
+        background: black;
+        position: absolute;
+        left: calc(50% - 2px);
+        transform-origin: 2px 150px;
+    }
+    #tick1{
+        transform: rotate(30deg);
+    }
+    #tick2{
+        transform: rotate(60deg);
+    }
+    #tick3{
+        transform: rotate(90deg);
+    }
+    #tick4{
+        transform: rotate(120deg);
+    }
+    #tick5{
+        transform: rotate(150deg);
+    }
+    #tick6{
+        transform: rotate(180deg);
+    }
+    #tick7{
+        transform: rotate(210deg);
+    }
+    #tick8{
+        transform: rotate(240deg);
+    }
+    #tick9{
+        transform: rotate(270deg);
+    }
+    #tick10{
+        transform: rotate(300deg);
+    }
+    #tick11{
+        transform: rotate(330deg);
+    }
+
+    .hand{
+        height: 2px;
+        background: black;
+        position: absolute;
+        left: 50%;
+        transform-origin: 0 1px;
+        top: calc(50% - 1px);
+    }
+    #hours{
+        width: 100px;
+        background-color: blueviolet;
+    }
+    #minutes{
+        width: 140px;
+        background-color: blue;
+    }
+    #seconds{
+        width: 150px;
+        background-color: red;
+    }
+</style>
+<script>
+    var offset = parseFloat(window.location.hash.replace('#', '')) || 0;
+    function setTime()
+    {
+        var now = new Date(new Date().getTime() + offset*60*60*1000);
+        var hours = now.getUTCHours();
+        var minutes = now.getUTCMinutes();
+        var seconds = now.getUTCSeconds();
+        console.log(hours, minutes, seconds);
+        document.getElementById('seconds').style.transform = "rotate(" + ((seconds-15) * 6) + "deg)";
+        document.getElementById('minutes').style.transform = "rotate(" + ((minutes-15) * 6) + "deg)";
+        document.getElementById('hours').style.transform = "rotate(" + ((hours-3) * 30 + (minutes*.5)) + "deg)";
+        if(hours > 6 && hours < 18){
+           document.getElementById('clock').style.filter = "invert(0)";
+        }
+        else{
+            document.getElementById('clock').style.filter = "invert(1)";
+        }
+    }
+
+    setTime();
+    setInterval(setTime, 1000);
+</script>
+
+</html>

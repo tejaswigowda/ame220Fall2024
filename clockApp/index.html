@@ -17,7 +17,7 @@
                 onOpenEnd: function () {
                     $(".select-dropdown.dropdown-trigger").click();
                 },
-                onCloseStart: function(){
+                onCloseStart: function () {
                     makeClocks();
                 }
             })[0];
@@ -29,10 +29,30 @@
         }
         var tzTexts;
         var theTZs;
-        function makeClocks(){
-            theTZs = tzSelect.getSelectedValues(); 
-            tzTexts = $('#timezones option:selected').toArray().map(item => item.text).join().split(",");
+        function makeClocks() {
+            theTZs = tzSelect.getSelectedValues();
+            tzTexts = $('#timezones option:selected').toArray().map(item => item.text).join("___").split("___");
+            var markup = "";
+            for (var i = 0; i < theTZs.length; i++) {
+                markup += "<button class='waves-effect waves-light btn white black-text' onclick='showClock(" + i + ")'>" +
+                    "<iframe src='./clock.html#" + theTZs[i] + "' style='border:none; width:100px;height:100px;left:0;top:0;position:absolute;'></iframe>" +
+                    "<p>" + tzTexts[i] + "</p></button>";
+            }
+            $("#clockList").html(markup);
 
+            var obj = {
+                theTZs: theTZs,
+                tzTexts: tzTexts
+            }
+            localStorage.setItem("clocks", JSON.stringify(obj));
+        }
+
+        function showClock(i) {
+            $("#clockList button").removeClass("blue white-text").addClass("white black-text");
+            $("#clockList button").eq(i).addClass("blue white-text").removeClass("white black-text");
+            var markup = "<h2 style='text-align:center'>" + tzTexts[i] + "</h2>" +
+            "<iframe src='./clock.html#" + theTZs[i] + "' style='border:none; width:100%;height:100%;left:0;top:0;position:absolute; transform:scale(6);'></iframe>";
+            $("#clockDetails").html(markup);
         }
     </script>
 </head>
@@ -177,6 +197,7 @@
         position: absolute;
         right: 0;
         top: 0;
+        overflow: hidden;
     }
 
     #modal1 {
@@ -184,6 +205,19 @@
         overflow: hidden;
         max-height: 90vh;
         margin-top: -10%;
+    }
+
+    #clockList button {
+        width: 100%;
+        height: 100px;
+    }
+
+    #clockList button p {
+        width: calc(100% - 100px);
+        margin-left: 100px;
+        text-align: left;
+        line-height: 22px;
+        font-size: 18px;
     }
 </style>
 

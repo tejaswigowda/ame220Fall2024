@@ -11,7 +11,17 @@
     <script>
         var modal;
         var tzSelect;
+        var tzTexts;
+        var theTZs;
+        var clocks;
         function start() {
+            clocks = (localStorage.getItem("clocks") || "").split(",");
+
+            for (var i = 0; i < clocks.length; i++) {
+                $("#timezones option[value='" + clocks[i] + "']").prop("selected", true);
+            }
+               
+
             var elems = document.querySelectorAll('.modal');
             modal = M.Modal.init(elems, {
                 onOpenEnd: function () {
@@ -23,12 +33,13 @@
             })[0];
             elems = document.querySelectorAll('select');
             tzSelect = M.FormSelect.init(elems, {})[0];
+            makeClocks();
+
         }
         function openModal() {
             modal.open();
         }
-        var tzTexts;
-        var theTZs;
+
         function makeClocks() {
             theTZs = tzSelect.getSelectedValues();
             tzTexts = $('#timezones option:selected').toArray().map(item => item.text).join("___").split("___");
@@ -40,11 +51,8 @@
             }
             $("#clockList").html(markup);
 
-            var obj = {
-                theTZs: theTZs,
-                tzTexts: tzTexts
-            }
-            localStorage.setItem("clocks", JSON.stringify(obj));
+           
+            localStorage.setItem("clocks", theTZs.join(","));
         }
 
         function showClock(i) {

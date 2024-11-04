@@ -3,7 +3,12 @@
 
 ## Tasks
 
-Starting with the code handout (`./code`), create a simple international clock desktop app using Electron. 
+Starting with the code handout (`./code`), create a simple international clock desktop app using Electron. Work on the aesthetics of the app, and make sure it is user-friendly. Make sure you wotk on the following:
+
+1. App color scheme
+2. App layout
+3. Fonts
+4. Icons, css, etc.
 
 ## Submission
 Executable on canvas.

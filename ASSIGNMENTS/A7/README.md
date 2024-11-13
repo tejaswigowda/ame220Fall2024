@@ -1,5 +1,5 @@
 # Assignment 7
-`Due Oct 11th, before midnight`
+`Due Nov 13th, before midnight`
 
 ## Tasks
 

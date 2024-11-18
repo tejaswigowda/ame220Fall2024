@@ -9,3 +9,5 @@ Slides: https://docs.google.com/presentation/d/1zdb7fxvypluFdvB70kIAXeBHBqyz6P18
 
 
 Theme example: https://github.com/StartBootstrap/startbootstrap-resume
+
+Capacitor HOWTO: https://gist.github.com/tejaswigowda/8449ed1365a255bca26eb6c519755db2
